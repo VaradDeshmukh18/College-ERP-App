@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "155659056486",
+    "project_id": "pcet-erp-app",
+    "storage_bucket": "pcet-erp-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155659056486:android:d477de88ef18abf6b404a7",
+        "android_client_info": {
+          "package_name": "com.vaddy.pceterpapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDceKsyWhQxgEetNRKmuzb3GhExwxzZC5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
