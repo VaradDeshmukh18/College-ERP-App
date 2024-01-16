@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     var navController = rememberNavController()
-
+                    // Main screen ui navigation
                     NavDisplay(navController)
                 }
             }
