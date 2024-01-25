@@ -134,11 +134,12 @@ fun DrawerItemList(
 
     ){
 
-        Image(
-            painter = painterResource(id = drawerMenu.icon),
-            contentDescription ="Drawer menue icons",
-            modifier = Modifier.size(30.dp)
-        )
+        Icon(painter = painterResource(id = drawerMenu.icon), contentDescription = "Drawer menue icons")
+//            Image(
+//            painter = painterResource(id = drawerMenu.icon),
+//            contentDescription ="Drawer menue icons",
+//            modifier = Modifier.size(30.dp)
+//        )
         Spacer(modifier = Modifier.padding(10.dp))
 
         Text(text = drawerMenu.item)
