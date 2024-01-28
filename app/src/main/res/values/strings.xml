@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PCET ERP App</string>
+    <string name="login_input_password">Password</string>
+    <string name="PCET">pcet</string>
+    <string name="SignIn">Sign</string>
+    <string name="UserName">Username</string>
+    <string name="hide_password">Hide Password</string>
+    <string name="show_password">Show Password</string>
+    <string name="log_in">Log in</string>
 </resources>
