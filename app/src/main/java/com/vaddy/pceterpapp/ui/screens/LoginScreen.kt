@@ -46,12 +46,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.vaddy.pceterpapp.R
+import com.vaddy.pceterpapp.data.LoginScreenViewModel
 import com.vaddy.pceterpapp.navigationGraph.NavScreenNames
 
 @Composable
 
 fun LoginScreen(
     navController: NavHostController,
+    viewModel : LoginScreenViewModel= androidx.lifecycle.viewmodel.compose.viewModel(),
+
 ) {
 
     Column(
