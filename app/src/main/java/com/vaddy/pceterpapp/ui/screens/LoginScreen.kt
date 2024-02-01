@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -130,7 +131,7 @@ fun LoginScreen(
 fun UserNameBox(){
 
 
-    var usernameState by remember {
+    var usernameState by rememberSaveable {
         mutableStateOf(
             TextFieldValue()
         )
@@ -166,7 +167,7 @@ fun PasswordBox(){
 
     val localFocusManager = LocalFocusManager.current
 
-    var passwordState by remember { mutableStateOf(TextFieldValue()) }
+    var passwordState by rememberSaveable { mutableStateOf(TextFieldValue()) }
 
     var passwordVisibility by remember {
         mutableStateOf(false)
@@ -175,7 +176,7 @@ fun PasswordBox(){
     TextField(
         value = passwordState.text,
         onValueChange = {
-
+                        passwordState = TextFieldValue(it)
         },
 
         singleLine = true,
