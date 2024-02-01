@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 import com.vaddy.pceterpapp.loginUi.Login
-import com.vaddy.pceterpapp.mainUI.DrawerNav
+import com.vaddy.pceterpapp.ui.screens.DrawerNav
 
 
 @Composable

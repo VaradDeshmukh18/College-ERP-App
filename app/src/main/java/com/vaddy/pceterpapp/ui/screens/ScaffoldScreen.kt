@@ -1,4 +1,4 @@
-package com.vaddy.pceterpapp.mainUI
+package com.vaddy.pceterpapp.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,6 +35,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vaddy.pceterpapp.R
+import com.vaddy.pceterpapp.data.ModuleList
+import com.vaddy.pceterpapp.ui.components.Module
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

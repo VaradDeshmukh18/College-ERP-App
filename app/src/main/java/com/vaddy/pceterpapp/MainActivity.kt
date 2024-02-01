@@ -30,3 +30,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/*
+             components
+             data
+             di
+             model
+             navigation
+             network
+             repository
+             screens
+             ui
+             utils
+ */

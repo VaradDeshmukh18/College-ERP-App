@@ -1,4 +1,4 @@
-package com.vaddy.pceterpapp.mainUI
+package com.vaddy.pceterpapp.ui.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -27,11 +27,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.vaddy.pceterpapp.data.ModuleNames
 
 
 @Composable
 fun Module(
-    module:ModuleNames
+    module: ModuleNames
 ){
     Card(
         modifier = Modifier
