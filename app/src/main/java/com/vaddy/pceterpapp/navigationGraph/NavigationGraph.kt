@@ -4,9 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-
-import com.vaddy.pceterpapp.loginUi.Login
 import com.vaddy.pceterpapp.ui.screens.DrawerNav
+import com.vaddy.pceterpapp.ui.screens.LoginScreen
 
 
 @Composable
@@ -18,7 +17,7 @@ fun NavDisplay(
     NavHost(navController = navController, startDestination = NavScreenNames.Login.toString()){
 
         composable(route=NavScreenNames.Login.toString()){
-            Login(navController = navController)
+            LoginScreen(navController = navController)
         }
 
         composable(route=NavScreenNames.Home.toString()){
