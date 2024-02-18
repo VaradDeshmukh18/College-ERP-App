@@ -17,15 +17,16 @@ fun NavDisplay(
 
     NavHost(navController = navController, startDestination = NavScreenNames.SplashScreen.toString()){
 
-        composable(route=NavScreenNames.SplashScreen.toString()){
+
+        composable(route=NavScreenNames.SplashScreen.name){
             SplashScreen(navController = navController)
         }
 
-        composable(route=NavScreenNames.Login.toString()){
+        composable(route=NavScreenNames.Login.name){
             LoginScreen(navController = navController)
         }
 
-        composable(route=NavScreenNames.Home.toString()){
+        composable(route=NavScreenNames.Home.name){
             DrawerNav(navController = navController)
         }
 

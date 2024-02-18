@@ -131,15 +131,15 @@ fun LoginScreen(
 fun UserNameBox(){
 
 
-    var usernameState by rememberSaveable {
+    var usernameState by remember {
         mutableStateOf(
-            TextFieldValue()
+            ""
         )
     }
 
     TextField(
-        value = usernameState.text,
-        onValueChange = { usernameState = TextFieldValue(it)},
+        value = usernameState,
+        onValueChange = { usernameState = it},
         singleLine = true,
         modifier = Modifier
             .fillMaxWidth()
@@ -167,16 +167,16 @@ fun PasswordBox(){
 
     val localFocusManager = LocalFocusManager.current
 
-    var passwordState by rememberSaveable { mutableStateOf(TextFieldValue()) }
+    var passwordState by remember { mutableStateOf("") }
 
     var passwordVisibility by remember {
         mutableStateOf(false)
     }
 
     TextField(
-        value = passwordState.text,
+        value = passwordState,
         onValueChange = {
-                        passwordState = TextFieldValue(it)
+                        passwordState = it
         },
 
         singleLine = true,

@@ -47,7 +47,8 @@ fun SplashScreen(
             )
             )
         delay(2000L)
-        navController.navigate(NavScreenNames.Login.toString())
+
+        navController.navigate(NavScreenNames.Login.name)
     }
 
     Surface(
@@ -61,7 +62,8 @@ fun SplashScreen(
         Column(
             modifier = Modifier
                 .padding(15.dp)
-                .scale(scale.value),
+                .scale(scale.value)
+            ,
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
