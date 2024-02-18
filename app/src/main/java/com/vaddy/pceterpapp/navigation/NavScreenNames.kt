@@ -1,4 +1,4 @@
-package com.vaddy.pceterpapp.navigationGraph
+package com.vaddy.pceterpapp.navigation
 
 enum class NavScreenNames {
 

@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.vaddy.pceterpapp.navigationGraph.NavDisplay
+import com.vaddy.pceterpapp.navigation.NavDisplay
 import com.vaddy.pceterpapp.ui.theme.PCETERPAppTheme
 
 class MainActivity : ComponentActivity() {

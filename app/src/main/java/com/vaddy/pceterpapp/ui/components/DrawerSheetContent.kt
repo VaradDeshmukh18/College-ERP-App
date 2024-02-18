@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.vaddy.pceterpapp.data.DrawerMenueItems
 import com.vaddy.pceterpapp.data.MenueList
-import com.vaddy.pceterpapp.navigationGraph.NavScreenNames
+import com.vaddy.pceterpapp.navigation.NavScreenNames
 
 
 @Composable

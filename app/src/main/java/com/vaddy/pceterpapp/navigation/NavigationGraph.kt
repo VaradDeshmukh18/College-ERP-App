@@ -1,4 +1,4 @@
-package com.vaddy.pceterpapp.navigationGraph
+package com.vaddy.pceterpapp.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

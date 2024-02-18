@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.vaddy.pceterpapp.R
-import com.vaddy.pceterpapp.navigationGraph.NavScreenNames
+import com.vaddy.pceterpapp.navigation.NavScreenNames
 import kotlinx.coroutines.delay
 
 @Composable
