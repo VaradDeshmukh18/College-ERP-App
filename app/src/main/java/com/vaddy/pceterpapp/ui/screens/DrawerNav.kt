@@ -9,8 +9,10 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.vaddy.pceterpapp.ui.components.DrawerSheetContent
 import com.vaddy.pceterpapp.ui.screens.ScaffScreen
 
@@ -39,3 +41,9 @@ fun DrawerNav(
 
 }
 
+@Preview
+@Composable
+fun MyPrev(){
+
+    DrawerNav( rememberNavController())
+}

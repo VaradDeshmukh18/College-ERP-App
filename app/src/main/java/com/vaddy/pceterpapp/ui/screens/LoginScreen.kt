@@ -20,11 +20,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
@@ -35,7 +34,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -55,18 +53,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.vaddy.pceterpapp.R
 import com.vaddy.pceterpapp.data.LoginScreenViewModel
-import com.vaddy.pceterpapp.navigation.NavScreenNames
+import com.vaddy.pceterpapp.data.NavScreenNames
 import com.vaddy.pceterpapp.ui.components.EmailInput
-import com.vaddy.pceterpapp.ui.components.InputField
 import com.vaddy.pceterpapp.ui.components.PasswordInput
 import com.vaddy.pceterpapp.ui.components.rememberImeState
-import com.vaddy.pceterpapp.ui.theme.PCETERPAppTheme
 
 @Composable
 
 fun LoginScreen(
     navController: NavHostController,
     viewModel : LoginScreenViewModel= androidx.lifecycle.viewmodel.compose.viewModel(),
+    
 ) {
     val imeState = rememberImeState()
     val scrollState = rememberScrollState()
@@ -77,6 +74,8 @@ fun LoginScreen(
         }
     }
 
+
+    val showLoginForm = rememberSaveable { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
@@ -95,13 +94,34 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        UserForm()
+        if (showLoginForm.value)
+            UserForm(loading=false,
+                isCreateAccount = false,
+                navController,
+                ){ email, password ->
+                viewModel.signIn(email, password){
+                    navController.navigate(NavScreenNames.Home.name)
+                }
+            }
 
-        Spacer(modifier = Modifier.height(50.dp))
+        else{
+            UserForm(loading=false,
+                isCreateAccount = true,
+                navController,
+            ){ email, password ->
+                viewModel.createUserWithEmailAndPassword(email, password) {
+                    navController.navigate(NavScreenNames.Home.name)
+                }
+            }
+        }
 
-        MyLoginButton(
-            navController
-        )
+
+
+
+
+
+
+
 
 
     }
@@ -125,32 +145,18 @@ private fun LoginTextImage(){
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(
-            text = buildAnnotatedString {
-                withStyle(
-                    style = SpanStyle(
-                        color = Color.Blue
-                    )
-                ) {
-                    append(stringResource(R.string.SignIn))
-                }
-                append(" ")
-                withStyle(
-                    style = SpanStyle(
-                        color = Color(0xFFFF8700)
-                    )
-                ) {
-                    append("in")
-                }
-            },
-            fontSize = 30.sp
-        )
+        LoginScreenText()
     }
 }
 
 
 @Composable
-fun UserForm(){
+fun UserForm(
+    loading: Boolean = false,
+    isCreateAccount: Boolean = false,
+    navController: NavHostController,
+    onDone: (String, String) -> Unit = { email, pwd ->},
+){
 
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
@@ -160,7 +166,7 @@ fun UserForm(){
     val keyboardController = LocalSoftwareKeyboardController.current
     val localFocusManager = LocalFocusManager.current
 
-    var valid = remember(email,password){
+    val valid = remember(email,password){
         email.trim().isNotEmpty() && password.trim().isNotEmpty()
     }
 
@@ -200,10 +206,10 @@ fun UserForm(){
         trailingIcon = {
             Icon(
                 painter = painterResource(
-                    if (passwordVisibility) R.drawable.visibilityoff
+                    if (!passwordVisibility) R.drawable.visibilityoff
                     else R.drawable.visibility
                 ),
-                contentDescription = if (passwordVisibility) stringResource(R.string.hide_password) else stringResource(
+                contentDescription = if (!passwordVisibility) stringResource(R.string.hide_password) else stringResource(
                     R.string.show_password
                 ),
 
@@ -227,20 +233,33 @@ fun UserForm(){
 
             onDone = {
                 localFocusManager.clearFocus()
-
+                email.trim()
+                password.trim()
+                keyboardController?.hide()
             }
         ),
 
     )
 
+    Spacer(modifier = Modifier.height(20.dp))
 
+    LoginButton(
+        text = stringResource(R.string.log_in),
+        navController= navController,
+        loading = false,
+        validInputs = valid,
+    )
 
 }
 
 
 @Composable
-fun MyLoginButton(
+fun LoginButton(
+    text:String = "",
+    validInputs:Boolean,
+    loading:Boolean = false,
     navController: NavHostController,
+
 ) {
 
 
@@ -251,20 +270,26 @@ fun MyLoginButton(
         modifier = Modifier
             .width(180.dp)
             .height(50.dp),
+        enabled = !loading && validInputs,
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xFF3a0ca3)
         )
     ) {
-        Text(
-            text = stringResource(R.string.log_in),
-            fontSize = 22.sp
-        )
+
+
+        if(loading) CircularProgressIndicator(modifier = Modifier.size(25.dp))
+        else{
+            Text(
+                text = text,
+                fontSize = 22.sp
+            )
+        }
     }
 
 }
 
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun LogPreview(){
 
@@ -279,8 +304,34 @@ fun LogPreview(){
         verticalArrangement = Arrangement.Center,
     ){
 
-    UserForm()
+        LoginScreen(navController = rememberNavController())
+
     }
 
 
+}
+
+@Composable
+@Stable
+fun LoginScreenText(){
+    Text(
+        text = buildAnnotatedString {
+            withStyle(
+                style = SpanStyle(
+                    color = Color.Blue
+                )
+            ) {
+                append(stringResource(R.string.SignIn))
+            }
+            append(" ")
+            withStyle(
+                style = SpanStyle(
+                    color = Color(0xFFFF8700)
+                )
+            ) {
+                append("in")
+            }
+        },
+        fontSize = 30.sp
+    )
 }
